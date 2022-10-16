@@ -1,4 +1,5 @@
 # ToDo App - ToDo (Trello) with React.
+Use master branch
 
 # ToDo Functionality
 
