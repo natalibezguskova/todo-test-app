@@ -26,7 +26,7 @@ export default function Card ({card}) {
           onDrop={handleDropCard}
       >
         <div className="title">
-          <div className="title-text">{card.title}</div>
+          <div className="cutted-preview">{card.title}</div>
           <button id={modalsTypes.addTask} className='add-task-button' onClick={handleClick}>+</button>
         </div>
         <div className="tasks">

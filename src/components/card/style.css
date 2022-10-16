@@ -24,12 +24,6 @@
     min-height: 32px;
 }
 
-.title-text {
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-}
-
 .tasks {
     width: 100%;
     display: flex;
@@ -49,6 +43,7 @@
     height: 28px;
     border: 2px solid darkcyan;
     font-size: 20px;
+    font-weight: 700;
     padding: 8px;
 }
 
