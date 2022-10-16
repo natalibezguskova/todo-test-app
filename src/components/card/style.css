@@ -1,0 +1,66 @@
+.card {
+    width: 300px;
+    min-width: 300px;
+    min-height: 300px;
+    height: fit-content;
+    padding-top: 12px;
+    margin: 0 10px;
+    border-radius: 12px;
+    background-color: #EDEDED;
+    flex-direction: column;
+    gap: 10px;
+    box-shadow: 0 1px 2px gainsboro;
+    position: relative;
+    display: inline-flex;
+}
+
+.title {
+    font-size: 28px;
+    font-weight: bold;
+    color: darkcyan;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 12px;
+    min-height: 32px;
+}
+
+.tasks {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    color: darkcyan;
+    flex-grow: 1;
+    padding: 0 8px;
+}
+
+.add-task-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    border: 2px solid darkcyan;
+    font-size: 20px;
+    padding: 8px;
+}
+
+.delete-card {
+    width: 100%;
+    border-radius: 0 0 8px 8px;
+    background-color: #DEDEDE;
+    padding: 10px;
+    text-align: center;
+    color: brown;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+
+@media screen and (max-width: 768px){
+    .card {
+        width: 250px;
+        min-width: 250px;
+    }
+}

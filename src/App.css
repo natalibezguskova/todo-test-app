@@ -1,0 +1,32 @@
+body {
+    margin: 0;
+    box-sizing: border-box;
+    background: cadetblue;
+    color: #393939;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html, body, #root {
+    width: 100%;
+}
+
+button {
+    padding: 8px 16px;
+    border-width: 0;
+    border-radius: 8px;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 15px;
+    font-family: Montserrat, sans-serif;
+    line-height: 18px;
+    text-align: center;
+    cursor: pointer;
+    color: darkcyan;
+}
+button:disabled {
+    color: #CBCBCB;
+}
+
