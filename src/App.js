@@ -1,24 +1,20 @@
-import logo from './logo.svg';
 import './App.css';
+import React, {useMemo} from 'react'
+import { useSelector } from 'react-redux'
+import Header from "./components/header/Header";
+import Todo from "./components/todo/Todo";
+import Modal from "./components/modal/Modal";
 
-function App() {
+const App = () => {
+  const { cardsState, modalLayer } = useSelector((state) => state.cards)
+  const emptyCards = useMemo(() => !cardsState || cardsState.length === 0,[cardsState])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <>
+        {modalLayer && <Modal {...modalLayer}/>}
+        <Header disableResetApp={emptyCards}/>
+        <Todo cards={cardsState} emptyCards={emptyCards}/>
+      </>
   );
 }
 

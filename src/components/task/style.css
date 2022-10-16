@@ -1,0 +1,34 @@
+.task {
+    display: flex;
+    background-color: #F8F8F8;
+    border-radius: 8px;
+    padding: 10px 12px;
+    box-shadow: 0 1px 2px gainsboro;
+    gap: 10px;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+.task-content {
+    overflow: hidden;
+}
+
+.task-title {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.task-edit {
+    font-weight: bold;
+    font-size: 30px;
+    color: #CBCBCB;
+    transform: rotate(90deg);
+    cursor: pointer;
+}
+
+.task-preview {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}

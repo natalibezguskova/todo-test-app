@@ -1,0 +1,41 @@
+.modal {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    background: #fff;
+    left: 50%;
+    top: 30%;
+    z-index: 9;
+    width: 320px;
+    gap: 20px;
+    border-radius: 10px;
+    box-shadow: 0 9px 31px rgb(0 0 0 / 5%);
+}
+
+.modal-header {
+    font-weight: 600;
+    line-height: 24px;
+    text-align: center;
+    font-size: 1.5rem;
+    padding: 20px 20px 0 20px;
+}
+
+.modal-inner {
+    font-size: 16px;
+    font-weight: 500;
+    color: #393939;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.modal-inner.edit {
+    gap: 0;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px 20px 20px;
+}
