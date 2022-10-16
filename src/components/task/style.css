@@ -26,9 +26,3 @@
     transform: rotate(90deg);
     cursor: pointer;
 }
-
-.task-preview {
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-}

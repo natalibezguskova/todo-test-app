@@ -40,7 +40,7 @@ export default function Task ({card, task, handleDragStartTask, handleDropTask})
       >
         <div className="task-content">
           <div className="task-title">{task.title}</div>
-          <div className="task-preview">{task.description}</div>
+          <div className="cutted-preview">{task.description}</div>
         </div>
         <div className="task-edit" onClick={handleEditTask}>...</div>
       </div>
