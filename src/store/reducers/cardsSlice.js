@@ -1,5 +1,6 @@
 import {createSlice} from '@reduxjs/toolkit'
 import uniqid from 'uniqid';
+import {removeItemFromArrayById, sortedByOrder, sortedArdReorderedArray, updateTasksInCardsArray} from "../utils";
 
 export const modalsTypes = {
   addCard: 'addCard',
@@ -16,20 +17,12 @@ export const elementsTypes = {
 
 const storage = localStorage.getItem('storage')
 const parsedStorage = (storage && storage !== 'undefined') ? JSON.parse(storage) : []
-const sortedCards = (arr) => arr.sort((a, b) => {
-  if (a.order > b.order) {
-    return 1
-  } else {
-    return -1
-  }
-})
-const sortedStorage = parsedStorage.length ? sortedCards(parsedStorage) : []
+const sortedStorage = parsedStorage.length ? sortedByOrder(parsedStorage) : []
 
 const initialState = {
   cardsState: sortedStorage,
   modalLayer: null,
   draggedElement: null,
-  clickedElement: null,
 }
 
 export const counterSlice = createSlice({
@@ -38,57 +31,55 @@ export const counterSlice = createSlice({
   reducers: {
     saveToLocalStorage: (state, action) => {
       localStorage.setItem('storage', JSON.stringify(action.payload))
-      state.cardsState = sortedCards(JSON.parse(localStorage.getItem('storage')))
+      state.cardsState = sortedByOrder(JSON.parse(localStorage.getItem('storage')))
     },
     resetApp: (state, action) => {
+      state.draggedElement = initialState.draggedElement
+      state.modalLayer = initialState.modalLayer
       counterSlice.caseReducers.saveToLocalStorage(state, { payload: []})
     },
-    reorderCards: (state, action) => {
-      const updatedCards = state.cardsState.map((el) => {
-        if (el.id === action.payload.card.id) {
-          return {...el, order: state.draggedElement.card.order}
+    reorder: (state, action) => {
+      const array = action.payload.type === elementsTypes.card ? state.cardsState : action.payload.card.tasks
+      const fromElement = action.payload.type === elementsTypes.card ? state.draggedElement.card : state.draggedElement.task
+      const toElement = action.payload.type === elementsTypes.card ? action.payload.card : action.payload.task
+      return array.map((el) => {
+        if (el.id === toElement.id) {
+          return {...el, order: fromElement.order}
         }
-        if (el.id === state.draggedElement.card.id) {
-          return {...el, order: action.payload.card.order}
+        if (el.id === fromElement.id) {
+          return {...el, order: toElement.order}
         }
         return el
       })
+    },
+    reorderCards: (state, action) => {
+      const updatedCards = counterSlice.caseReducers.reorder(state, {payload: {...action.payload, type: elementsTypes.card}})
+      counterSlice.caseReducers.saveToLocalStorage(state, {payload: updatedCards})
+    },
+    updateCards: (state, action) => {
+      const {card: fromCard, task: fromTask} = state.draggedElement
+      const {card: toCard, updateTasks, order} = action.payload
+      const updatedTasks = [...updateTasks, {...state.draggedElement.task, order: order}]
+      const updatedCards = updateTasksInCardsArray(state.cardsState, updatedTasks, fromCard.id, toCard.id, fromCard.tasks, fromTask.id, fromTask.order)
       counterSlice.caseReducers.saveToLocalStorage(state, {payload: updatedCards})
     },
     handleDrag: (state, action) => {
       state.draggedElement = action.payload
-      // counterSlice.caseReducers.saveToLocalStorage(state, action)
     },
     handleDrop: (state, action) => {
       if (action.payload.type === elementsTypes.card) {
         switch (state.draggedElement.type) {
           //from task to card
           case (elementsTypes.task): {
-            // check if this is the same card - if not update tasks
+            // move task only if this is not the same card
             if (action.payload.card.id !== state.draggedElement.card.id) {
-              // delete task from old card
-              const movedTaskIndex = state.draggedElement.card.tasks.indexOf(state.draggedElement.task)
-              state.draggedElement.card.tasks.splice(movedTaskIndex, 1)
-              // add task to the new card
-              state.cardsState = state.cardsState.map((el) => {
-                if (el.id === action.payload.card.id) {
-                  el.tasks.push(state.draggedElement.task)
-                  return el
-                }
-                if (el.id === state.draggedElement.card.id) {
-                  el.tasks = el.tasks.filter((t) => t.id !== state.draggedElement.task.id)
-                  return el
-                }
-                return el
-              })
+              counterSlice.caseReducers.updateCards(state, {payload: {...action.payload, updateTasks: action.payload.card.tasks, order: action.payload.card.tasks.length + 1}})
             }
             break;
           }
             //from card to card
           default: {
-            counterSlice.caseReducers.reorderCards(state, {
-              payload: action.payload
-            });
+            counterSlice.caseReducers.reorderCards(state, action);
           }
         }
       }
@@ -96,35 +87,31 @@ export const counterSlice = createSlice({
         switch (state.draggedElement.type) {
             //from task to task
           case (elementsTypes.task): {
-            const { task, card } = action.payload
-            const dropOnTaskIndex = card.tasks.indexOf(task)
-            const dropToIndex = () => {
-              if (dropOnTaskIndex === 0) return 0
-              return dropOnTaskIndex + 1
+            const {card: fromCard, task: fromTask} = state.draggedElement
+            const {card: toCard, task: toTask} = action.payload
+            if (toCard.id === fromCard.id) {
+              // just reorder tasks inside the same card
+              const updatedTasks = counterSlice.caseReducers.reorder(state, {payload: {...action.payload, type: elementsTypes.task}})
+              const updatedCards = state.cardsState.map((card) => {
+                if (card.id === toCard.id) card.tasks = sortedByOrder(updatedTasks)
+                return card
+              })
+              counterSlice.caseReducers.saveToLocalStorage(state, {payload: updatedCards})
+            } else {
+              const reorderedTasks = toCard.tasks.map((task) => {
+                if (task.order >= toTask.order) return {...task, order: task.order + 1}
+                return task
+              })
+              counterSlice.caseReducers.updateCards(state, {payload: {...action.payload, updateTasks: reorderedTasks, order: action.payload.task.order}})
             }
-            state.cardsState = state.cardsState.map((el) => {
-              if (el.id === action.payload.card.id) {
-                el.tasks = el.tasks.filter((t) => t.id !== state.draggedElement.task.id)
-                el.tasks = [...el.tasks.slice(0, dropToIndex()), state.draggedElement.task, ...el.tasks.slice(dropToIndex())]
-                return el
-              }
-              if (el.id === state.draggedElement.card.id) {
-                el.tasks = el.tasks.filter((t) => t.id !== state.draggedElement.task.id)
-                return el
-              }
-              return el
-            })
             break;
           }
             //from card to card
           default: {
-            counterSlice.caseReducers.reorderCards(state, {
-              payload: action.payload
-            });
+            counterSlice.caseReducers.reorderCards(state, action);
           }
         }
       }
-      // counterSlice.caseReducers.saveToLocalStorage(state, action)
     },
     onConfirmModal: (state, action) => {
       if (state.modalLayer) {
@@ -136,7 +123,9 @@ export const counterSlice = createSlice({
           }
           case modalsTypes.addTask: {
             updatedCards = state.cardsState.map((card) => {
-              if (card.id === state.modalLayer.cardId) card.tasks.push({ id: uniqid(), ...action.payload})
+              if (card.id === state.modalLayer.cardId) {
+                return { ...card, tasks: [...card.tasks, {id: uniqid(), order: card.tasks.length + 1, ...action.payload}]}
+              }
               return card
             })
             break
@@ -147,14 +136,13 @@ export const counterSlice = createSlice({
               if (card.id !== state.modalLayer.cardId && card.order > orderOfDeletingCard) card.order = card.order - 1
               return card
             })
-            updatedCards = cardsWithUpdatedOrders.filter((card) => card.id !== state.modalLayer.cardId)
+            updatedCards = removeItemFromArrayById(cardsWithUpdatedOrders, state.modalLayer.cardId)
             break
           }
           case modalsTypes.openTask: {
             // in opened task confirm button = delete task button
-            const cardWithUpdatedTasks = state.modalLayer.card.tasks.filter((task) => task.id !== state.modalLayer.task.id)
             updatedCards = state.cardsState.map((card) => {
-              if (card.id === state.modalLayer.card.id) card.tasks = cardWithUpdatedTasks
+              if (card.id === state.modalLayer.card.id) card.tasks = sortedArdReorderedArray(state.modalLayer.card.tasks, state.modalLayer.task.id, state.modalLayer.task.order)
               return card
             })
             break
@@ -177,7 +165,6 @@ export const counterSlice = createSlice({
             console.warn('There is no such action for modal')
           }
         }
-        // state.cardsState = updatedCards
         counterSlice.caseReducers.saveToLocalStorage(state, {payload: updatedCards})
         counterSlice.caseReducers.closeModal(state, action)
       }

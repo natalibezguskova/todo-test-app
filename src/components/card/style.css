@@ -39,12 +39,12 @@
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-    width: 28px;
-    height: 28px;
+    width: 29px;
+    height: 30px;
     border: 2px solid darkcyan;
     font-size: 20px;
-    font-weight: 700;
-    padding: 8px;
+    font-weight: 600;
+    padding: 0 8px;
 }
 
 .delete-card {
