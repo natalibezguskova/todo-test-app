@@ -89,15 +89,17 @@ export default function Modal (props) {
   }, [handleCardHeader, handleConfirm, handleTaskDescription, handleTaskHeader, props.task, props.type])
 
   return (
-      <div className="modal">
-        <div className="modal-header">{header}</div>
-        <div className="modal-inner">
-          <div>{(!header && !description) ? "В задаче нет заголовка и описания." : description}</div>
-          {inputs}
-        </div>
-        <div className="modal-footer">
-          {confirmButton}
-          <button onClick={handleCancel}>Закрыть</button>
+      <div className='modal-wrap'>
+        <div className="modal">
+          <div className="modal-header">{header}</div>
+          <div className="modal-inner">
+            <div>{(!header && !description) ? "В задаче нет заголовка и описания." : description}</div>
+            {inputs}
+          </div>
+          <div className="modal-footer">
+            {confirmButton}
+            <button onClick={handleCancel}>Закрыть</button>
+          </div>
         </div>
       </div>
   )
