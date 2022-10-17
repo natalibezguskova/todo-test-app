@@ -1,12 +1,19 @@
+.modal-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    left: 32%;
+    top: 30%;
+    z-index: 9;
+    width: 36%;
+}
+
 .modal {
     display: flex;
     flex-direction: column;
-    position: absolute;
     background: #fff;
-    left: 50%;
-    top: 30%;
-    z-index: 9;
-    width: 320px;
+    width: 350px;
     gap: 20px;
     border-radius: 10px;
     box-shadow: 0 9px 31px rgb(0 0 0 / 5%);
@@ -38,4 +45,23 @@
     display: flex;
     justify-content: space-between;
     padding: 0 20px 20px 20px;
+}
+
+@media screen and (max-width: 500px){
+    .modal-wrap {
+        left: 15%;
+        top: 20%;
+        width: 70%;
+    }
+    .modal {
+        width: 270px;
+    }
+}
+
+@media screen and (max-width: 350px){
+    .modal-wrap {
+        left: 5%;
+        top: 20%;
+        width: 90%;
+    }
 }
