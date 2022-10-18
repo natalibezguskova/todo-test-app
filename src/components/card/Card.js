@@ -2,6 +2,7 @@ import React, {useCallback} from "react";
 import {useDispatch} from "react-redux";
 import {openModal, handleDrag, handleDrop, elementsTypes, modalsTypes} from '../../store/reducers/cardsSlice'
 import Task from "../task/Task";
+import { ReactComponent as TrashCanIcon } from '../../icons/trash-can.svg'
 import './style.css';
 
 export default function Card ({card}) {
@@ -15,7 +16,8 @@ export default function Card ({card}) {
     dispatch(handleDrop({type: elementsTypes.card, card: card}))
   }, [card, dispatch])
 
- const handleClick  = useCallback((e) => dispatch(openModal({type: modalsTypes[e.target.id], cardId: card.id})), [card.id, dispatch])
+  const handleAddTask  = useCallback((e) => dispatch(openModal({type: modalsTypes.addTask, cardId: card.id})), [card.id, dispatch])
+  const handleDeleteCard  = useCallback((e) => dispatch(openModal({type: modalsTypes.deleteCard, cardId: card.id})), [card.id, dispatch])
 
   return (
       <div
@@ -27,7 +29,9 @@ export default function Card ({card}) {
       >
         <div className="title">
           <div className="cutted-preview">{card.title}</div>
-          <button id={modalsTypes.addTask} className='add-task-button' onClick={handleClick}>+</button>
+          <button className="delete-icon cursor" onClick={handleDeleteCard}>
+            <TrashCanIcon />
+          </button>
         </div>
         <div className="tasks">
           {card.tasks.map((task) => (
@@ -40,7 +44,9 @@ export default function Card ({card}) {
               />
           ))}
         </div>
-        <div id={modalsTypes.deleteCard} className='delete-card' onClick={handleClick}>Удалить группу</div>
+        {/*<div id={modalsTypes.deleteCard} className='delete-card' onClick={handleClick}>Удалить группу</div>*/}
+
+        <div id={modalsTypes.addTask} className='add-card-button cursor' onClick={handleAddTask}>Добавить задание</div>
       </div>
   )
 }

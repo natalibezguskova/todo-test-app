@@ -6,7 +6,7 @@
     padding-top: 12px;
     margin: 0 10px;
     border-radius: 12px;
-    background-color: #EDEDED;
+    background-color: #606483;
     flex-direction: column;
     gap: 10px;
     box-shadow: 0 1px 2px gainsboro;
@@ -17,9 +17,10 @@
 .title {
     font-size: 28px;
     font-weight: bold;
-    color: darkcyan;
+    color: #fff9b2;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding: 0 12px;
     min-height: 32px;
 }
@@ -29,7 +30,7 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
-    color: darkcyan;
+    color: #ffa3e7;
     flex-grow: 1;
     padding: 0 8px;
 }
@@ -41,21 +42,31 @@
     border-radius: 50%;
     width: 29px;
     height: 30px;
-    border: 2px solid darkcyan;
+    border: 2px solid #ffa3e7;
     font-size: 20px;
     font-weight: 600;
     padding: 0 8px;
+    background-color: transparent;
 }
 
-.delete-card {
+.add-card-button {
     width: 100%;
     border-radius: 0 0 8px 8px;
-    background-color: #DEDEDE;
+    border-top: 2px solid #ffa3e7;
+    background-color: #606483;
     padding: 10px;
     text-align: center;
-    color: brown;
-    font-weight: bold;
-    cursor: pointer;
+    color: #ffa3e7;
+    font-weight: 500;
+}
+
+.delete-icon {
+    width: 20px;
+    height: 20px;
+    fill: #fff9b2;
+    padding: 0;
+    border: none;
+    background-color: transparent;
 }
 
 

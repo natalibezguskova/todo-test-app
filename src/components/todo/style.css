@@ -4,6 +4,7 @@
     overflow-x: scroll;
     white-space:nowrap;
     display: flex;
+    background-color: #bfc0ce;
 }
 
 .empty {

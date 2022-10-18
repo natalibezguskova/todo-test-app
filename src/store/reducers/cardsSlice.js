@@ -15,6 +15,11 @@ export const elementsTypes = {
   task: 'task',
 }
 
+export const languageTypes = {
+  RU: 'RU',
+  EN: 'EN',
+}
+
 const storage = localStorage.getItem('storage')
 const parsedStorage = (storage && storage !== 'undefined') ? JSON.parse(storage) : []
 const sortedStorage = parsedStorage.length ? sortedByOrder(parsedStorage) : []
@@ -22,7 +27,9 @@ const sortedStorage = parsedStorage.length ? sortedByOrder(parsedStorage) : []
 const initialState = {
   cardsState: sortedStorage,
   modalLayer: null,
+  openInfo: false,
   draggedElement: null,
+  language: languageTypes.RU
 }
 
 export const counterSlice = createSlice({
@@ -37,6 +44,10 @@ export const counterSlice = createSlice({
       state.draggedElement = initialState.draggedElement
       state.modalLayer = initialState.modalLayer
       counterSlice.caseReducers.saveToLocalStorage(state, { payload: []})
+    },
+    toggleLanguage: (state, action) => {
+      const newLang = state.language === languageTypes.RU ? languageTypes.EN : languageTypes.RU
+      state.language = newLang
     },
     reorder: (state, action) => {
       const array = action.payload.type === elementsTypes.card ? state.cardsState : action.payload.card.tasks
@@ -175,9 +186,12 @@ export const counterSlice = createSlice({
     closeModal: (state, action) => {
       state.modalLayer = initialState.modalLayer
     },
+    toggleInfo: (state, action) => {
+      state.openInfo = !state.openInfo
+    },
   },
 })
 
-export const { resetApp, closeModal, openModal, onConfirmModal, handleDrag, handleDrop } = counterSlice.actions
+export const { resetApp, closeModal, openModal, onConfirmModal, handleDrag, handleDrop, toggleInfo, toggleLanguage } = counterSlice.actions
 
 export default counterSlice.reducer

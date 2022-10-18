@@ -1,0 +1,16 @@
+.info {
+    width: 400px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: #fff;
+    transform: translateX(-400px);
+    transition: transform  .65s ease;
+    overflow: hidden;
+    padding: 10px;
+}
+
+.info-open .info {
+    transform: translateX(0);
+}

@@ -1,0 +1,13 @@
+.main-layout {
+    margin: 0;
+    overflow-x: hidden;
+}
+
+.info-open .main-content {
+    transform: translateX(400px);
+}
+
+.main-content {
+    transition: transform .65s ease;
+    display: flex;
+}

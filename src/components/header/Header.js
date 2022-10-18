@@ -28,9 +28,9 @@ export default function Header ({disableResetApp}) {
 
   return (
       <>
-        <div className={sideMenuOpened ? 'side-menu' : 'side-menu opened'}>
-          {actionButtons}
-        </div>
+        {/*<div className={sideMenuOpened ? 'side-menu' : 'side-menu opened'}>*/}
+        {/*  {actionButtons}*/}
+        {/*</div>*/}
         <div className="header">
           <div className='tablet-and-mobile-button'>
             <button onClick={() => setSideMenuOpened(!sideMenuOpened)}>|||</button>
@@ -38,7 +38,6 @@ export default function Header ({disableResetApp}) {
           <div className='desktop-buttons'>
             {actionButtons}
           </div>
-          <div>ToDo</div>
         </div>
       </>
   )

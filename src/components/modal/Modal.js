@@ -90,6 +90,7 @@ export default function Modal (props) {
 
   return (
       <div className='modal-wrap'>
+        <div className="modal-backdrop cursor" onClick={handleCancel}/>
         <div className="modal">
           <div className="modal-header">{header}</div>
           <div className="modal-inner">
