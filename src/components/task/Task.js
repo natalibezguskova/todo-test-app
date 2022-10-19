@@ -1,6 +1,7 @@
 import React, {useCallback} from "react";
 import {useDispatch} from "react-redux";
 import {modalsTypes, openModal} from "../../store/reducers/cardsSlice";
+import { ReactComponent as EditIcon } from '../../icons/ellipsis.svg'
 import './style.css';
 
 export default function Task ({card, task, handleDragStartTask, handleDropTask}) {
@@ -42,7 +43,9 @@ export default function Task ({card, task, handleDragStartTask, handleDropTask})
           <div className="task-title">{task.title}</div>
           <div className="cutted-preview">{task.description}</div>
         </div>
-        <div className="task-edit" onClick={handleEditTask}>...</div>
+        <button className="task-edit">
+          <EditIcon onClick={handleEditTask} width="20px" height="26px"/>
+        </button>
       </div>
   )
 }
