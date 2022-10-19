@@ -29,8 +29,8 @@ export default function Card ({card}) {
       >
         <div className="title">
           <div className="cutted-preview">{card.title}</div>
-          <button className="delete-icon cursor" onClick={handleDeleteCard}>
-            <TrashCanIcon />
+          <button className="delete-icon" onClick={handleDeleteCard}>
+            <TrashCanIcon width="20px" height="20px" fill="#fff9b2"/>
           </button>
         </div>
         <div className="tasks">
@@ -44,8 +44,6 @@ export default function Card ({card}) {
               />
           ))}
         </div>
-        {/*<div id={modalsTypes.deleteCard} className='delete-card' onClick={handleClick}>Удалить группу</div>*/}
-
         <div id={modalsTypes.addTask} className='add-card-button cursor' onClick={handleAddTask}>Добавить задание</div>
       </div>
   )

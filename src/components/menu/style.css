@@ -15,26 +15,42 @@
     border-left: 2px solid #7a7d99;
 }
 
-.menu-item {
+.menu div {
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.menu .name {
     width: 46px;
     min-width: 46px;
     height: 46px;
-    border-radius: 50%;
-    color: #7a7d99;
-    fill: #7a7d99;
     font-weight: 800;
     font-size: 20px;
-    cursor: pointer;
+    margin-bottom: 4px;
+    color: #7a7d99;
 }
 
-.menu-item.name {
-    cursor: auto;
+.menu button {
+    padding: 0;
+    background-color: transparent;
+    fill: #7a7d99;
 }
-.menu-item.lang {
+
+.menu button:hover svg{
+    fill: #ffa3e7;
+}
+
+.menu button.lang {
     font-size: 18px;
     background-color: #7a7d99;
     color: white;
+    font-weight: 800;
+}
+
+.menu button:hover.lang {
+    font-size: 18px;
+    background-color: #ffa3e7;
+    color: white;
+    font-weight: 800;
 }

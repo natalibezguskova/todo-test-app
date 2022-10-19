@@ -1,5 +1,5 @@
 .label {
-    color: #969696;
+    color: #bfc0ce;
 }
 
 .input {
@@ -11,11 +11,9 @@
     box-sizing: border-box;
     height: 48px;
     margin: 0;
-    padding: 0 8px;
     border: 0;
-    border-radius: 8px;
-    background: #F8F8F8;
     position: relative;
+    background-color: #606483;
 }
 
 input {
@@ -25,18 +23,19 @@ input {
     box-sizing: border-box;
     width: 100%;
     border: 0;
-    border-radius: 8px;
-    background: none;
-    color: #969696;
+    color: #bfc0ce;
     outline: none;
     font-weight: 500;
     font-size: 16px;
     margin-right: 10px;
+    border-bottom: 1px solid #fff9b2;
+    background-color: #606483;
+    padding-bottom: 5px;
 }
 
 input::placeholder {
     align-items: center;
-    color: #CBCBCB;
+    color: #7a7d99;
     font-weight: 400;
     font-size: 1rem;
     line-height: 24px;
@@ -45,7 +44,7 @@ input::placeholder {
 .input-clear {
     font-size: 28px;
     font-weight: bold;
-    color: brown;
     transform: rotate(45deg);
     cursor: pointer;
+    color: #ffa3e7;
 }

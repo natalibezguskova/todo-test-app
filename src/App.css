@@ -1,6 +1,5 @@
 body {
     box-sizing: border-box;
-    /*background: cadetblue;*/
     color: #393939;
     margin: 0;
     padding: 0;
@@ -21,20 +20,50 @@ html, body, #root {
 }
 
 button {
-    /*padding: 8px 16px;*/
-    /*border-width: 0;*/
-    /*border-radius: 8px;*/
-    /*font-weight: 600;*/
-    /*font-style: normal;*/
-    /*font-size: 15px;*/
-    /*font-family: Montserrat, sans-serif;*/
-    /*line-height: 18px;*/
-    /*text-align: center;*/
-    /*cursor: pointer;*/
-    /*color: darkcyan;*/
+    padding: 8px 16px;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 18px;
+    text-align: center;
+    cursor: pointer;
+    height: 46px;
+    min-width: 46px;
+    margin: 0;
+    border: none;
+    border-radius: 27.5px;
+    box-sizing: border-box;
+    text-decoration: none;
+    color: #606483;
 }
+
+button.cancel {
+    background-color: #fff9b2;
+}
+
+button.confirm {
+    background-color: #ffa3e7;
+}
+
 button:disabled {
     color: #CBCBCB;
+}
+
+button:hover {
+    background-color: #fff;
+}
+
+button:hover svg {
+    fill: #fff;
+}
+
+button.icon {
+    fill: #606483;
+    padding: 0;
+    background-color: transparent;
+}
+
+button:disabled.icon {
+    fill: #CBCBCB;
 }
 
 .cutted-preview {

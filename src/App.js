@@ -1,5 +1,5 @@
 import './App.css';
-import React, {useMemo} from 'react'
+import React from 'react'
 import ModalLayer from './components/modal/ModalLayer'
 import MainLayout from './components/mainLayout/MainLayout'
 

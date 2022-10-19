@@ -60,15 +60,18 @@
     font-weight: 500;
 }
 
-.delete-icon {
-    width: 20px;
+button.delete-icon {
     height: 20px;
+    min-width: 20px;
     fill: #fff9b2;
     padding: 0;
     border: none;
     background-color: transparent;
 }
 
+button:hover.delete-icon {
+    background-color: transparent;
+}
 
 @media screen and (max-width: 768px){
     .card {

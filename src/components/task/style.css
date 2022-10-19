@@ -2,7 +2,7 @@
     display: flex;
     background-color: #F8F8F8;
     border-radius: 8px;
-    padding: 10px 12px;
+    padding: 10px 8px 10px 12px;
     box-shadow: 0 1px 2px gainsboro;
     gap: 10px;
     justify-content: space-between;
@@ -14,15 +14,28 @@
     overflow: hidden;
 }
 
+.task-content .cutted-preview {
+    color: #606483;
+}
+
 .task-title {
     font-weight: bold;
     font-size: 18px;
 }
 
 .task-edit {
-    font-weight: bold;
-    font-size: 30px;
-    color: #CBCBCB;
-    transform: rotate(90deg);
-    cursor: pointer;
+    width: 20px;
+    height: 26px;
+    fill: #606483;
+    padding: 0;
+    border: none;
+    background-color: transparent;
+}
+
+button.task-edit:hover svg {
+    fill: #ffa3e7;
+}
+
+button.task-edit:hover {
+    background-color: #F8F8F8;
 }

@@ -11,3 +11,9 @@
     transition: transform .65s ease;
     display: flex;
 }
+
+@media screen and (max-width: 500px){
+    .info-open .main-content {
+        transform: translateX(250px);
+    }
+}

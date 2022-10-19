@@ -13,7 +13,7 @@ export const modalsHeaderText = {
 
 export const modalsDescriptionText = {
   addCard: 'Для создания новой группы необходимо указать заголовок группы.',
-  addTask: 'Для добавления нового задания укажите его заголовок и по необходимости описание.',
+  addTask: 'Для добавления нового задания укажите его заголовок и описание.',
   deleteCard: 'Вы уверены, что хотите удалить группу?',
   editTask: 'Вы можете отредактировать или удалить заголовок и описание задания.',
 }
@@ -42,7 +42,7 @@ export default function Modal (props) {
         return [
           modalsHeaderText[props.type],
           modalsDescriptionText[props.type],
-          <button onClick={handleConfirm}>Подвердить</button>,
+          <button onClick={handleConfirm} className="confirm">Подвердить</button>,
           <>
             <Input onChange={handleTaskHeader}/>
             <Input onChange={handleTaskDescription} placeholder={inputPlaceholders.description} label={inputLabels.description}/>
@@ -53,7 +53,7 @@ export default function Modal (props) {
         return [
           modalsHeaderText[props.type],
           modalsDescriptionText[props.type],
-          <button onClick={handleConfirm}>Подвердить</button>,
+          <button onClick={handleConfirm} className="confirm">Подвердить</button>,
           null
         ]
       }
@@ -61,7 +61,7 @@ export default function Modal (props) {
         return [
           modalsHeaderText[props.type],
           modalsDescriptionText[props.type],
-          <button onClick={handleConfirm}>Подвердить</button>,
+          <button onClick={handleConfirm} className="confirm">Подвердить</button>,
           <>
             <Input onChange={handleTaskHeader} initValue={props.task.title}/>
             <Input onChange={handleTaskDescription} placeholder={inputPlaceholders.description} initValue={props.task.description} label={inputLabels.description}/>
@@ -72,7 +72,7 @@ export default function Modal (props) {
         return [
           props.task.title,
           props.task.description,
-          <button onClick={handleConfirm}>Удалить</button>,
+          <button onClick={handleConfirm} className="confirm">Удалить</button>,
           null
         ]
       }
@@ -81,7 +81,7 @@ export default function Modal (props) {
         return [
           modalsHeaderText[props.type],
           modalsDescriptionText[props.type],
-          <button onClick={handleConfirm}>Подвердить</button>,
+          <button onClick={handleConfirm} className="confirm">Подвердить</button>,
           <Input onChange={handleCardHeader}/>
         ]
       }
@@ -99,7 +99,7 @@ export default function Modal (props) {
           </div>
           <div className="modal-footer">
             {confirmButton}
-            <button onClick={handleCancel}>Закрыть</button>
+            <button onClick={handleCancel} className="cancel">Закрыть</button>
           </div>
         </div>
       </div>
