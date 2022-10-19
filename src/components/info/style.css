@@ -1,0 +1,37 @@
+.info {
+    width: 400px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background: #fff;
+    transform: translateX(-400px);
+    transition: transform  .65s ease;
+    overflow: hidden;
+    padding: 16px 20px;
+    color: #606483;
+}
+
+.info-open .info {
+    transform: translateX(0);
+}
+
+.info ul {
+    padding-inline-start: 20px;
+    margin-block-start: 0;
+}
+
+.info ul li {
+    margin-bottom: 10px;
+}
+
+@media screen and (max-width: 500px){
+    .info {
+        width: 250px;
+        transform: translateX(-250px);
+        overflow-y: scroll;
+    }
+}

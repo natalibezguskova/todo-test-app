@@ -1,0 +1,68 @@
+export const locales = {
+  EN: {
+    info_about: "ToDo Apр - is a simple version of the Trello writing using React. There are only tree additional libraries: redux, RTK, uniqid.",
+    info_functionality: "Functionality:",
+    info_topic_1: "Create card with title for tasks.",
+    info_topic_2: "Add a task with title and description (optional) to card.",
+    info_topic_3: "Open task details in modal and ability to edit it's title and description.",
+    info_topic_4: "Delete card with all its tasks/delete task from card.",
+    info_topic_5: "Drag and drop tasks to reorder in card or to move it in another card.",
+    info_topic_6: "Reset app.",
+    info_topic_7: "Saving local app state.",
+    info_topic_8: "Responsive design (desktop, tablet, mobile).",
+    addCard: {
+      title: 'Create new card',
+      description: 'Create new card and add a title for it.',
+    },
+    addTask: {
+      title: "Add task",
+      description: 'Add a title and a description for a new task.',
+    },
+    deleteCard: {
+      title: 'Delete card',
+      description: 'Are you sure that you want to delete this card?',
+    },
+    editTask: {
+      title: 'Edit task',
+      description: 'You can edit or delete the title and description of the task.',
+    },
+    empty_task: 'There are no title and description in this task',
+    button_confirm: 'Confirm',
+    button_cancel: 'Close',
+    button_delete: 'Delete',
+    button_add_task: "Add task",
+  },
+  RU: {
+    info_about: "Приложение ToDo Apр - это упрощенная версия Trello написанный на React. Из дополнительных библиотек использованы лишь: redux, RTK, uniqid.",
+    info_functionality: "Функционал:",
+    info_topic_1: "Создание карточки задач с заголовком.",
+    info_topic_2: "Добавление задачи с заголовком и описанием (опционально)\n",
+    info_topic_3: "Просмотр задачи (полное описание, заголовок) и редактирование в модальном окне.",
+    info_topic_4: "Возможность удаления карточки задач вместе с задачами/ удаление конкретной задачи.",
+    info_topic_5: "Ручное перемещение задач внутри группы и между группами, ручное изменение порядка карточек с задачами с помощью перемещения.",
+    info_topic_6: "Возможность полной очистки приложения.",
+    info_topic_7: "Локальное состояние сохраняется в браузере",
+    info_topic_8: "Адаптация интерфейса для десктопов, таблетов и мобильных устройств.",
+    addCard: {
+      title: 'Создать новую группу',
+      description: 'Для создания новой группы необходимо указать заголовок группы.',
+    },
+    addTask: {
+      title: "Добавить задание",
+      description: 'Для добавления нового задания укажите его заголовок и описание.',
+    },
+    deleteCard: {
+      title: 'Удалить группу',
+      description: 'Вы уверены, что хотите удалить группу?',
+    },
+    editTask: {
+      title: 'Редактировать задание',
+      description: 'Вы можете отредактировать или удалить заголовок и описание задания.',
+    },
+    empty_task: "В задаче нет заголовка и описания.",
+    button_confirm: 'Подтвердить',
+    button_cancel: 'Закрыть',
+    button_delete: 'Удалить',
+    button_add_task: "Добавить задание",
+  },
+}

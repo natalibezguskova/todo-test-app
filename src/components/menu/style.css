@@ -1,0 +1,56 @@
+.menu {
+    min-width: 80px;
+    box-sizing: border-box;
+    z-index: 1;
+    background-color: #fff;
+    box-shadow: 2px 0 1px #7a7d99;
+    position: relative;
+    height: 100vh;
+    display: flex;
+    justify-content: space-between;
+    flex-grow: 30;
+    flex-direction: column;
+    align-items: center;
+    padding: 8px 4px;
+    border-left: 2px solid #7a7d99;
+}
+
+.menu div {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.menu .name {
+    width: 46px;
+    min-width: 46px;
+    height: 46px;
+    font-weight: 800;
+    font-size: 20px;
+    margin-bottom: 4px;
+    color: #7a7d99;
+}
+
+.menu button {
+    padding: 0;
+    background-color: transparent;
+    fill: #7a7d99;
+}
+
+.menu button:hover svg{
+    fill: #ffa3e7;
+}
+
+.menu button.lang {
+    font-size: 18px;
+    background-color: #7a7d99;
+    color: white;
+    font-weight: 800;
+}
+
+.menu button:hover.lang {
+    font-size: 18px;
+    background-color: #ffa3e7;
+    color: white;
+    font-weight: 800;
+}
