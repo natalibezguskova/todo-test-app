@@ -9,7 +9,7 @@
     background-color: #606483;
     flex-direction: column;
     gap: 10px;
-    box-shadow: 0 1px 2px gainsboro;
+    box-shadow: 0 1px 2px #494c65;
     position: relative;
     display: inline-flex;
 }
@@ -58,6 +58,7 @@
     text-align: center;
     color: #ffa3e7;
     font-weight: 500;
+    margin: 0;
 }
 
 button.delete-icon {

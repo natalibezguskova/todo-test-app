@@ -3,11 +3,11 @@ import {useDispatch} from "react-redux";
 import {openModal, handleDrag, handleDrop, elementsTypes, modalsTypes} from '../../store/reducers/cardsSlice'
 import Task from "../task/Task";
 import { ReactComponent as TrashCanIcon } from '../../icons/trash-can.svg'
+import useLanguage from '../../hooks/useLanguage'
 import './style.css';
 
 export default function Card ({card}) {
   const dispatch = useDispatch()
-
   const handleDragStartTask = useCallback((task) => dispatch(handleDrag({ type: elementsTypes.task, task: task, card: card })), [card, dispatch])
   const handleDragStartCard = useCallback(() => dispatch(handleDrag({ type: elementsTypes.card, card: card })), [dispatch, card])
   const handleDropTask = useCallback((task) => dispatch(handleDrop({type: elementsTypes.task, task: task, card: card})), [dispatch, card])
@@ -18,7 +18,6 @@ export default function Card ({card}) {
 
   const handleAddTask  = useCallback((e) => dispatch(openModal({type: modalsTypes.addTask, cardId: card.id})), [card.id, dispatch])
   const handleDeleteCard  = useCallback((e) => dispatch(openModal({type: modalsTypes.deleteCard, cardId: card.id})), [card.id, dispatch])
-
   return (
       <div
           className="card"
@@ -44,7 +43,7 @@ export default function Card ({card}) {
               />
           ))}
         </div>
-        <div id={modalsTypes.addTask} className='add-card-button cursor' onClick={handleAddTask}>Добавить задание</div>
+        <button className='add-card-button' onClick={handleAddTask}>{useLanguage("button_add_task")}</button>
       </div>
   )
 }
